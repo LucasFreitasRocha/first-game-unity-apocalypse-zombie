@@ -49,8 +49,6 @@ public class EnemyController : MonoBehaviour
 
     void AttackedPlayer()
     {
-        Time.timeScale = 0;
-        playerController.TextGameOver.SetActive(true);
-        playerController.Alive = false;
+        this.playerController.takeDamage(Random.Range(1,10));
     }
 }
