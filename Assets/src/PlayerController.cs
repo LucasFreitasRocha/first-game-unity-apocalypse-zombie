@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 direction;
     private Rigidbody rigidPlayer;
     private Animator animatorPlayer;
+    public InterfaceController InterfaceController ;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -70,6 +72,7 @@ public class PlayerController : MonoBehaviour
     public void takeDamage(int damage)
     {
         this.life -= damage;
+        this.InterfaceController.updateLifeBar();
         if (this.life <= 0)
         {
             Time.timeScale = 0;
