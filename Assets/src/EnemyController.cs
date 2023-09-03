@@ -35,7 +35,7 @@ public class EnemyController : MonoBehaviour
         float distance = Vector3.Distance(player.transform.position, transform.position);
         Quaternion rotation = Quaternion.LookRotation(direction);
         zombieRigidBody.MoveRotation(rotation);
-        if (distance > 2.5)
+        if (distance > 3)
         {
             zombieRigidBody.MovePosition(zombieRigidBody.position + direction.normalized * speed * Time.deltaTime);
             zombieAnimator.SetBool("attacking", false);
@@ -49,8 +49,6 @@ public class EnemyController : MonoBehaviour
 
     void AttackedPlayer()
     {
-        Time.timeScale = 0;
-        playerController.TextGameOver.SetActive(true);
-        playerController.Alive = false;
+        this.playerController.takeDamage(Random.Range(1,10));
     }
 }

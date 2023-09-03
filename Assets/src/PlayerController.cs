@@ -8,10 +8,12 @@ public class PlayerController : MonoBehaviour
     public float speed = 0f;
     public LayerMask MaskFloor;
     public GameObject TextGameOver;
-    public bool Alive = true;
+    public int life = 100;
     private Vector3 direction;
     private Rigidbody rigidPlayer;
     private Animator animatorPlayer;
+    public InterfaceController InterfaceController ;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -42,14 +44,14 @@ public class PlayerController : MonoBehaviour
             speed = 0;
         }
         animatorPlayer.SetFloat("speedAnimator", speed);
-        if(!Alive && Input.GetButtonDown("Jump"))
+        if (this.life <= 0 && Input.GetButtonDown("Jump"))
         {
             SceneManager.LoadScene("game");
         }
     }
     void FixedUpdate()
     {
-        
+
         rigidPlayer.MovePosition(rigidPlayer.position + (direction * Time.deltaTime * speed));
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit impact;
@@ -64,6 +66,17 @@ public class PlayerController : MonoBehaviour
             // if(Input.GetButton("Fire2")){
             //     rigidPlayer.MovePosition(rigidPlayer.position +  playerAimingPosition);
             // }
+        }
+    }
+
+    public void takeDamage(int damage)
+    {
+        this.life -= damage;
+        this.InterfaceController.updateLifeBar();
+        if (this.life <= 0)
+        {
+            Time.timeScale = 0;
+            this.TextGameOver.SetActive(true);
         }
     }
 }
