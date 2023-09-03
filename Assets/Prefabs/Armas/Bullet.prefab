@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
+  HitZombieSound: {fileID: 8300000, guid: da9f07c66715c1c42b9e6cb815793880, type: 3}
 --- !u!54 &-2841953622920699928
 Rigidbody:
   m_ObjectHideFlags: 0
