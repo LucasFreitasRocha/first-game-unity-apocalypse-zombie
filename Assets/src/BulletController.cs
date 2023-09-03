@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-   public float speed = 30;
+    public float speed = 30;
 
     private Rigidbody bulletRigidbody;
+    public AudioClip HitZombieSound;
     // Start is called before the first frame update
     void Start()
     {
-            bulletRigidbody = GetComponent<Rigidbody>();
+        bulletRigidbody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -29,6 +30,7 @@ public class BulletController : MonoBehaviour
         if (other.tag == "enemy")
         {
             Destroy(other.gameObject);
+            AudioController.instanceAudioSource.PlayOneShot(HitZombieSound);
         }
         Destroy(gameObject);
     }

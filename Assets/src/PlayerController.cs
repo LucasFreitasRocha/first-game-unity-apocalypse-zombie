@@ -9,10 +9,11 @@ public class PlayerController : MonoBehaviour
     public LayerMask MaskFloor;
     public GameObject TextGameOver;
     public int life = 100;
+    public InterfaceController InterfaceController ;
+    public AudioClip DamageSound;
     private Vector3 direction;
     private Rigidbody rigidPlayer;
     private Animator animatorPlayer;
-    public InterfaceController InterfaceController ;
     
     // Start is called before the first frame update
     void Start()
@@ -73,6 +74,7 @@ public class PlayerController : MonoBehaviour
     {
         this.life -= damage;
         this.InterfaceController.updateLifeBar();
+        AudioController.instanceAudioSource.PlayOneShot(DamageSound);
         if (this.life <= 0)
         {
             Time.timeScale = 0;

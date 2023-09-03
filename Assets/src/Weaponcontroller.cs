@@ -7,6 +7,7 @@ public class Weaponcontroller : MonoBehaviour
     // Start is called before the first frame update
     public GameObject Bullet;
     public GameObject spawnBullet;
+    public AudioClip fireSound;
     bool canShoot = false;
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,7 @@ public class Weaponcontroller : MonoBehaviour
     {
         canShoot = true;
         Instantiate(Bullet, spawnBullet.transform.position, spawnBullet.transform.rotation);
+        AudioController.instanceAudioSource.PlayOneShot(fireSound);
         yield return new WaitForSeconds(0.5f);
         canShoot = false;
 
